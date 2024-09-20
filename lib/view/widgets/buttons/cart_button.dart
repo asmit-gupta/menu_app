@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:menu_app/view/widgets/buttons/plus_circular_button.dart';
 
 class CartButton extends StatefulWidget {
-  const CartButton({super.key});
+  final VoidCallback onRemove;
+  final VoidCallback onAdd;
+  final int quantity;
+  const CartButton(
+      {super.key,
+      required this.onRemove,
+      required this.onAdd,
+      required this.quantity});
 
   @override
   State<CartButton> createState() => _CartButtonState();
@@ -42,8 +49,8 @@ class _CartButtonState extends State<CartButton> {
           ),
         ],
       ),
-      child: const Padding(
-        padding: EdgeInsets.only(
+      child: Padding(
+        padding: const EdgeInsets.only(
           left: 4.0,
           top: 4.0,
           bottom: 4.0,
@@ -52,25 +59,35 @@ class _CartButtonState extends State<CartButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularContainer(
-              icon: Icons.remove,
+            InkWell(
+              onTap: () {
+                widget.onRemove.call();
+              },
+              child: const CircularContainer(
+                icon: Icons.remove,
+              ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
             Text(
-              '1',
-              style: TextStyle(
+              widget.quantity.toString(),
+              style: const TextStyle(
                 color: Color(0xFF4A5662),
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
-            CircularContainer(
-              icon: Icons.add,
+            InkWell(
+              onTap: () {
+                widget.onAdd.call();
+              },
+              child: const CircularContainer(
+                icon: Icons.add,
+              ),
             ),
           ],
         ),

@@ -6,6 +6,12 @@ class CartProvider with ChangeNotifier {
   final Map<String, CartItem> _items = {};
 
   Map<String, CartItem> get items => _items;
+  int getQuantity(FoodItem item){
+if(!items.containsKey(item.id)){
+  return 0;
+}
+return items.values.firstWhere((e)=>e.foodItem==item).quantity;
+  }
 
   double get totalPrice {
     return _items.values.fold(

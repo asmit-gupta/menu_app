@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:menu_app/provider/cart_provider.dart';
+import 'package:menu_app/provider/order_provider.dart';
+import 'package:provider/provider.dart';
 
 class PlaceOrderIcon extends StatelessWidget {
   const PlaceOrderIcon({super.key});

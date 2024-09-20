@@ -10,6 +10,13 @@ class HomeTab4 extends StatefulWidget {
 class _HomeTab4State extends State<HomeTab4> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Center(
+      child: Text(
+        'Beverages',
+        style: TextStyle(
+          color: Colors.black87,
+        ),
+      ),
+    );
   }
 }

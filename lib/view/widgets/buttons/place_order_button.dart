@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+import 'package:menu_app/provider/cart_provider.dart';
+import 'package:menu_app/provider/order_provider.dart';
 import 'package:menu_app/view/widgets/place_order_icon.dart';
+import 'package:provider/provider.dart';
 
 class PlaceOrderButton extends StatefulWidget {
   const PlaceOrderButton({super.key});
@@ -20,7 +23,12 @@ class _PlaceOrderButtonState extends State<PlaceOrderButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //
+        var prov = Provider.of<CartProvider>(context, listen: false);
+        if (prov.itemCount > 0) {
+          Provider.of<OrdersProvider>(context, listen: false)
+              .addOrder(prov.items.values.toList(), prov.totalPrice);
+          prov.clearCart();
+        }
       },
       child: Container(
         width: MediaQuery.of(context).size.width - 20,
@@ -50,8 +58,8 @@ class _PlaceOrderButtonState extends State<PlaceOrderButton> {
             ),
           ],
         ),
-        child: const Padding(
-          padding: EdgeInsets.only(
+        child: Padding(
+          padding: const EdgeInsets.only(
             right: 8.0,
             top: 8.0,
             bottom: 8.0,
@@ -60,14 +68,16 @@ class _PlaceOrderButtonState extends State<PlaceOrderButton> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '4 Items',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
-              ),
+              Consumer<CartProvider>(builder: (context, prov, child) {
+                return Text(
+                  '${prov.items.length} Items',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                );
+              }),
               Row(
                 children: [
                   Text(

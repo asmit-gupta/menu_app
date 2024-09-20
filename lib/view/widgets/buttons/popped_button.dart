@@ -5,11 +5,13 @@ class PoppedButton extends StatelessWidget {
   final double height;
   final double width;
   final VoidCallback onTap;
+  final String imagePath;
   const PoppedButton(
       {super.key,
       required this.height,
       required this.width,
-      required this.onTap});
+      required this.onTap,
+      required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +25,25 @@ class PoppedButton extends StatelessWidget {
           borderRadius: const BorderRadius.all(
             Radius.circular(10.0),
           ),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
-              color: Color(0xAEAEC066),
-              offset: Offset(1.5, 1.5),
+              color: const Color(0xffAEAEC0).withOpacity(0.4),
+              offset: const Offset(1.5, 1.5),
               blurRadius: 3,
             ),
-            BoxShadow(
-              color: Color(0xFFFFFFFF),
+            const BoxShadow(
+              color: Color(0xffFFFFFF),
               offset: Offset(-1, -1),
               blurRadius: 3,
             ),
           ],
+        ),
+        child: Center(
+          child: Image.asset(
+            imagePath,
+            height: 15,
+            width: 15,
+          ),
         ),
       ),
     );

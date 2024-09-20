@@ -5,7 +5,7 @@ List<String> _foodNames = [
   'Chocolate Bowl',
   'Sunset Acai Bowl',
   'Fried Rice',
-  'Grilled Cheese Sandwich',
+  'Cheese Sandwich',
   'Veggie Pizza Slice',
   'Spicy Tofu Wrap',
   'Classic Burger',
@@ -23,9 +23,6 @@ List<String> _categories = [
 
 List<String> _imagePaths = [
   'assets/food_image1.jpg',
-  'assets/food_image2.jpg',
-  'assets/food_image3.jpg',
-  'assets/food_image4.jpg',
 ];
 
 final random = Random();
